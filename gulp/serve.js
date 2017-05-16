@@ -9,8 +9,10 @@ export default function serve(gulp){
   gulp.task('serve', cb => {
       runSequence(
         'clean:tmp',
+        'lint:scripts',
         'webpack:dev',
         'start:server',
+        'lint:watch:scripts',
         cb
     );
   });

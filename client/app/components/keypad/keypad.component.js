@@ -5,14 +5,14 @@ import ClearButton from './../clear-button/clear-button.component';
 
 export default class Keypad extends React.Component {
 
-  renderButton(index){
+  renderButton(index) {
     const buttons = this.props.buttons;
     return (
-        <div className="col s4 num-button">
-          <NumButton value={buttons[index].value} text={buttons[index].text} onClick={() => this.props.onNumBtnClick(index)} />
-        </div>
+      <div className="col s4 num-button">
+        <NumButton value={buttons[index].value} text={buttons[index].text} onClick={() => this.props.onNumBtnClick(index)} />
+      </div>
     );
-  } 
+  }
 
   render() {
     return (

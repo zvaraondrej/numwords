@@ -68,13 +68,7 @@ module.exports = function makeWebpackConfig(options) {
      * Loaders
      */
     config.module = {
-
         rules: [{
-            test: /\.js$/,
-            enforce: "pre",
-            exclude: /node_modules/,
-            use: ['jsxhint-loader']
-        }, {
             test: /\.js$/,
             exclude: /node_modules/,
             use: ['babel-loader'],

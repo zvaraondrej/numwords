@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default class Navbar extends React.Component {
   render() {
     return (
-       <nav className="indigo darken-4">
+      <nav className="indigo darken-4">
         <div className="container">
           <div className="nav-wrapper">
             <Link className="brand-logo text-logo" to="/">Numwords App</Link>
