@@ -1,44 +1,17 @@
-import _ from 'lodash';
-import paths from './paths';
 import lazypipe from 'lazypipe';
 import runSequence from 'run-sequence';
+import paths from './paths';
 
-export default function lint(gulp, plugins){
+export default function lint(gulp, plugins) {
+  const lintScripts = lazypipe().pipe(plugins.eslint).pipe(plugins.eslint.format);
 
-    let lintClientScripts = lazypipe()
-        .pipe(plugins.eslint)
-        .pipe(plugins.eslint.format);
-
-    let lintServerScripts = lazypipe()
-        .pipe(plugins.eslint)
-        .pipe(plugins.eslint.format);
-
-    /*let lintClientScripts = lazypipe()
-        .pipe(plugins.eslint, `${paths.client.root}.eslintrc`)
-        .pipe(plugins.eslint.format);
-
-    let lintServerScripts = lazypipe()
-        .pipe(plugins.eslint, `${paths.server.root}.eslintrc`)
-        .pipe(plugins.eslint.format);*/
-
-
-    gulp.task('lint:scripts', cb => {
-        // runSequence(['lint:scripts:client', 'lint:scripts:server'], cb)
-        runSequence(['lint:scripts:client'], cb)
-    });
-
-    gulp.task('lint:scripts:client', () => {
-        return gulp.src(paths.client.scripts)
-            .pipe(lintClientScripts());
-    });
-
-    gulp.task('lint:scripts:server', () => {
-        return gulp.src(paths.server.scripts)
-            .pipe(lintServerScripts());
-    });
-
-    gulp.task('lint:watch:scripts', () => {
-        gulp.watch(['client/**/*.js', 'server/**/*.js'], ['lint:scripts']);
+  gulp.task('lint:scripts', (cb) => {
+    runSequence(['lint:scripts:client', 'lint:scripts:server', 'lint:scripts:gulp'], cb);
   });
 
+  gulp.task('lint:scripts:client', () => gulp.src(paths.client.scripts).pipe(lintScripts()));
+
+  gulp.task('lint:scripts:server', () => gulp.src(paths.server.scripts).pipe(lintScripts()));
+
+  gulp.task('lint:scripts:gulp', () => gulp.src(paths.gulp.scripts).pipe(lintScripts()));
 }

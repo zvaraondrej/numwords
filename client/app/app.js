@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 import createBrowserHistory from 'history/createBrowserHistory';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import configure from './store/configure';
-import { Provider } from 'react-redux';
 
 import Navbar from './components/navbar/navbar.component';
 import Footer from './components/footer/footer.component';
@@ -26,6 +26,5 @@ render(
       </div>
     </Router>
   </Provider>,
- document.getElementById('app'),
+  document.getElementById('app'),
 );
-

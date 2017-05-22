@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as wordsActions from './../../actions/words.actions';
@@ -9,7 +10,6 @@ import Keypad from './../keypad/keypad.component';
 import NumDisplay from './../num-display/num-display.component';
 
 class Home extends React.Component {
-
   constructor() {
     super();
     this.setButtons();
@@ -57,11 +57,9 @@ class Home extends React.Component {
         <div className="row">
           <div className="col s12 m8 offset-m2 l6 offset-l3">
 
-            { this.props.errors && this.props.errors.length > 0 ? (
-              <ErrorList errors={this.props.errors} />
-            ) : (
-              <WordsList words={this.props.words} />
-            )}
+            {this.props.errors && this.props.errors.length > 0
+              ? <ErrorList errors={this.props.errors} />
+              : <WordsList words={this.props.words} />}
 
             <NumDisplay numbers={numbers} />
 
@@ -79,7 +77,6 @@ class Home extends React.Component {
   }
 }
 
-
 function mapStateToProps(state) {
   return {
     words: state.words.data,
@@ -92,5 +89,17 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(wordsActions, dispatch),
   };
 }
+
+Home.propTypes = {
+  actions: PropTypes.object,
+  errors: PropTypes.array,
+  words: PropTypes.array,
+};
+
+Home.defaultProps = {
+  actions: [],
+  errors: [],
+  words: [],
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

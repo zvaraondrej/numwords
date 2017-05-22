@@ -1,7 +1,3 @@
-/*
-* Main app config
-*/
-
 import path from 'path';
 
 export default {
@@ -16,9 +12,6 @@ export default {
   // Server IP
   ip: process.env.IP || 'localhost',
 
-  //logging direcotry for production logs
-  logDir: path.join(`${__dirname}/../../log`)
-
+  // logging direcotry for production logs
+  logDir: path.join(`${__dirname}/../../log`),
 };
-
-

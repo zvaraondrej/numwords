@@ -1,16 +1,9 @@
-/**
- * main router file for /words path
- */
-
-'use strict';
-
-import _ from 'lodash';
 import express from 'express';
 import WordsController from './words.controller';
 
-let ctrl = new WordsController();
+const ctrl = new WordsController();
 
-let router = express.Router();
+const router = express.Router();
 router.get('/', ctrl.getWords.bind(ctrl));
 
 export default router;

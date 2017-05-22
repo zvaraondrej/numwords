@@ -1,19 +1,13 @@
-/*
- * Env task
- */
-
-export default function env(gulp, plugins){
-
+export default function env(gulp, plugins) {
   gulp.task('env:test', () => {
-      plugins.env({
-          vars: { NODE_ENV: 'test' }
-      });
+    plugins.env({
+      vars: { NODE_ENV: 'test' },
+    });
   });
 
   gulp.task('env:prod', () => {
-      plugins.env({
-          vars: {NODE_ENV: 'production'}
-      });
+    plugins.env({
+      vars: { NODE_ENV: 'production' },
+    });
   });
-
 }

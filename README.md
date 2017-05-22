@@ -26,4 +26,10 @@ Build
 gulp build
 ```
 
+Prettify
+-----
+```
+gulp prettify
+```
+
 Run ```gulp serve:prod``` to build and run the app
